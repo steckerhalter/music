@@ -1,26 +1,37 @@
 \documentclass[a4paper,landscape]{article}
 \usepackage[margin=1cm]{geometry}
 \usepackage{tikz}
+\usepackage{xcolor}
 \usetikzlibrary{shapes.geometric}
 
 \pagestyle{empty}
+
+% Define custom color palette for all 12 chromatic pitch classes
+\definecolor{colorG}{HTML}{2E7D32}   % Deep Green (Root G)
+\definecolor{colorGs}{HTML}{A5D6A7}  % Light Green (G#/Ab)
+\definecolor{colorA}{HTML}{D81B60}   % Crimson/Pink (A)
+\definecolor{colorAs}{HTML}{F48FB1}  % Soft Pink (A#/Bb)
+\definecolor{colorB}{HTML}{8E24AA}   % Purple (B)
+\definecolor{colorC}{HTML}{1976D2}   % Blue (C)
+\definecolor{colorCs}{HTML}{90CAF9}  % Light Blue (C#/Db)
+\definecolor{colorD}{HTML}{E65100}   % Orange (D)
+\definecolor{colorDs}{HTML}{FFCC80}  % Light Orange (D#/Eb)
+\definecolor{colorE}{HTML}{FBC02D}   % Gold/Yellow (E)
+\definecolor{colorF}{HTML}{00897B}   % Teal (F)
+\definecolor{colorFs}{HTML}{80CBC4}  % Light Teal (F#/Gb)
 
 \begin{document}
 
 \begin{center}
     {\Huge \bfseries \sffamily Guitalele Fretboard Note Map}\\[0.2cm]
-    {\Large \sffamily Tuning: G--D--G--B--D--G (Low to High)}\\[0.6cm]
+    {\Large \sffamily Tuning: G--D--G--B--D--G (Low to High)}\\[0.4cm]
 \end{center}
 
 \noindent
 \centering
 \begin{tikzpicture}[xscale=1.5, yscale=0.9]
 
-    % Fretboard parameters
-    % X: Frets 0 (Nut) to 12
-    % Y: Strings 1 (Top / High G) to 6 (Bottom / Low G)
-
-    % Fretboard wood background
+    % Fretboard Wood Background
     \fill[gray!15, rounded corners=3pt] (-0.3, 0.5) rectangle (12.3, 6.5);
 
     % Nut (Fret 0)
@@ -36,7 +47,6 @@
     \foreach \fret in {3, 5, 7, 9} {
         \fill[gray!40] (\fret - 0.5, 3.5) circle (0.18cm);
     }
-    % 12th Fret Double Dot
     \fill[gray!40] (11.5, 2.3) circle (0.18cm);
     \fill[gray!40] (11.5, 4.7) circle (0.18cm);
 
@@ -53,68 +63,64 @@
     \node[left, font=\sffamily\bfseries] at (-0.6, 2) {Str 5 (D)};
     \node[left, font=\sffamily\bfseries] at (-0.6, 1) {Str 6 (Low G)};
 
-    % -------------------------------------------------------------
-    % PLACING NOTES (String, Fret, Note Name, IsRoot)
-    % Y-coordinate = 7 - String Number
-    % X-coordinate = Fret - 0.5 (Open = -0.3)
-    % -------------------------------------------------------------
-
-    \newcommand{\note}[4]{
-        % #1: String (1-6), #2: Fret (0-12), #3: Note Name, #4: IsRoot (1 or 0)
+    % Dynamic Note Drawing Command
+    % #1: String (1-6), #2: Fret (0-12), #3: Display Text, #4: Color ID suffix, #5: Text Color (white or black)
+    \newcommand{\note}[5]{%
         \ifnum#2=0
-            \def\xpos{-0.3}
+            \def\xpos{-0.3}%
         \else
-            \pgfmathsetmacro{\xpos}{#2 - 0.5}
+            \pgfmathsetmacro{\xpos}{#2 - 0.5}%
         \fi
-        \pgfmathsetmacro{\ypos}{7 - #1}
+        \pgfmathsetmacro{\ypos}{7 - #1}%
 
-        \ifnum#4=1
-            % Root Notes (G) highlighted in dark gray/black fill with white text
-            \fill[black] (\xpos, \ypos) circle (0.28cm);
-            \node[white, font=\sffamily\bfseries\tiny] at (\xpos, \ypos) {#3};
-        \else
-            % Regular Notes in white circle with black text
-            \fill[white, draw=black, line width=0.8pt] (\xpos, \ypos) circle (0.26cm);
-            \node[black, font=\sffamily\bfseries\tiny] at (\xpos, \ypos) {#3};
-        \fi
+        % Draw circle using the color name "color#4" without space padding issues
+        \fill[color#4, draw=black!80, line width=0.6pt] (\xpos, \ypos) circle (0.28cm);
+        \node[#5, font=\sffamily\bfseries\tiny] at (\xpos, \ypos) {#3};%
     }
 
     % String 1 (High G)
-    \note{1}{0}{G}{1} \note{1}{1}{G$\sharp$}{0} \note{1}{2}{A}{0} \note{1}{3}{A$\sharp$}{0}
-    \note{1}{4}{B}{0} \note{1}{5}{C}{0} \note{1}{6}{C$\sharp$}{0} \note{1}{7}{D}{0}
-    \note{1}{8}{D$\sharp$}{0} \note{1}{9}{E}{0} \note{1}{10}{F}{0} \note{1}{11}{F$\sharp$}{0} \note{1}{12}{G}{1}
+    \note{1}{0}{G}{G}{white} \note{1}{1}{G$\sharp$}{Gs}{black} \note{1}{2}{A}{A}{white} \note{1}{3}{A$\sharp$}{As}{black}
+    \note{1}{4}{B}{B}{white} \note{1}{5}{C}{C}{white} \note{1}{6}{C$\sharp$}{Cs}{black} \note{1}{7}{D}{D}{white}
+    \note{1}{8}{D$\sharp$}{Ds}{black} \note{1}{9}{E}{E}{black} \note{1}{10}{F}{F}{white} \note{1}{11}{F$\sharp$}{Fs}{black} \note{1}{12}{G}{G}{white}
 
     % String 2 (D)
-    \note{2}{0}{D}{0} \note{2}{1}{D$\sharp$}{0} \note{2}{2}{E}{0} \note{2}{3}{F}{0}
-    \note{2}{4}{F$\sharp$}{0} \note{2}{5}{G}{1} \note{2}{6}{G$\sharp$}{0} \note{2}{7}{A}{0}
-    \note{2}{8}{A$\sharp$}{0} \note{2}{9}{B}{0} \note{2}{10}{C}{0} \note{2}{11}{C$\sharp$}{0} \note{2}{12}{D}{0}
+    \note{2}{0}{D}{D}{white} \note{2}{1}{D$\sharp$}{Ds}{black} \note{2}{2}{E}{E}{black} \note{2}{3}{F}{F}{white}
+    \note{2}{4}{F$\sharp$}{Fs}{black} \note{2}{5}{G}{G}{white} \note{2}{6}{G$\sharp$}{Gs}{black} \note{2}{7}{A}{A}{white}
+    \note{2}{8}{A$\sharp$}{As}{black} \note{2}{9}{B}{B}{white} \note{2}{10}{C}{C}{white} \note{2}{11}{C$\sharp$}{Cs}{black} \note{2}{12}{D}{D}{white}
 
     % String 3 (B)
-    \note{3}{0}{B}{0} \note{3}{1}{C}{0} \note{3}{3}{D}{0} \note{3}{2}{C$\sharp$}{0}
-    \note{3}{4}{D$\sharp$}{0} \note{3}{5}{E}{0} \note{3}{6}{F}{0} \note{3}{7}{F$\sharp$}{0}
-    \note{3}{8}{G}{1} \note{3}{9}{G$\sharp$}{0} \note{3}{10}{A}{0} \note{3}{11}{A$\sharp$}{0} \note{3}{12}{B}{0}
+    \note{3}{0}{B}{B}{white} \note{3}{1}{C}{C}{white} \note{3}{2}{C$\sharp$}{Cs}{black} \note{3}{3}{D}{D}{white}
+    \note{3}{4}{D$\sharp$}{Ds}{black} \note{3}{5}{E}{E}{black} \note{3}{6}{F}{F}{white} \note{3}{7}{F$\sharp$}{Fs}{black}
+    \note{3}{8}{G}{G}{white} \note{3}{9}{G$\sharp$}{Gs}{black} \note{3}{10}{A}{A}{white} \note{3}{11}{A$\sharp$}{As}{black} \note{3}{12}{B}{B}{white}
 
     % String 4 (G)
-    \note{4}{0}{G}{1} \note{4}{1}{G$\sharp$}{0} \note{4}{2}{A}{0} \note{4}{3}{A$\sharp$}{0}
-    \note{4}{4}{B}{0} \note{4}{5}{C}{0} \note{4}{6}{C$\sharp$}{0} \note{4}{7}{D}{0}
-    \note{4}{8}{D$\sharp$}{0} \note{4}{9}{E}{0} \note{4}{10}{F}{0} \note{4}{11}{F$\sharp$}{0} \note{4}{12}{G}{1}
+    \note{4}{0}{G}{G}{white} \note{4}{1}{G$\sharp$}{Gs}{black} \note{4}{2}{A}{A}{white} \note{4}{3}{A$\sharp$}{As}{black}
+    \note{4}{4}{B}{B}{white} \note{4}{5}{C}{C}{white} \note{4}{6}{C$\sharp$}{Cs}{black} \note{4}{7}{D}{D}{white}
+    \note{4}{8}{D$\sharp$}{Ds}{black} \note{4}{9}{E}{E}{black} \note{4}{10}{F}{F}{white} \note{4}{11}{F$\sharp$}{Fs}{black} \note{4}{12}{G}{G}{white}
 
     % String 5 (D)
-    \note{5}{0}{D}{0} \note{5}{1}{D$\sharp$}{0} \note{5}{2}{E}{0} \note{5}{3}{F}{0}
-    \note{5}{4}{F$\sharp$}{0} \note{5}{5}{G}{1} \note{5}{6}{G$\sharp$}{0} \note{5}{7}{A}{0}
-    \note{5}{8}{A$\sharp$}{0} \note{5}{9}{B}{0} \note{5}{10}{C}{0} \note{5}{11}{C$\sharp$}{0} \note{5}{12}{D}{0}
+    \note{5}{0}{D}{D}{white} \note{5}{1}{D$\sharp$}{Ds}{black} \note{5}{2}{E}{E}{black} \note{5}{3}{F}{F}{white}
+    \note{5}{4}{F$\sharp$}{Fs}{black} \note{5}{5}{G}{G}{white} \note{5}{6}{G$\sharp$}{Gs}{black} \note{5}{7}{A}{A}{white}
+    \note{5}{8}{A$\sharp$}{As}{black} \note{5}{9}{B}{B}{white} \note{5}{10}{C}{C}{white} \note{5}{11}{C$\sharp$}{Cs}{black} \note{5}{12}{D}{D}{white}
 
     % String 6 (Low G)
-    \note{6}{0}{G}{1} \note{6}{1}{G$\sharp$}{0} \note{6}{2}{A}{0} \note{6}{3}{A$\sharp$}{0} \note{6}{4}{B}{0} \note{6}{5}{C}{0} \note{6}{6}{C$\sharp$}{0} \note{6}{7}{D}{0}
-    \note{6}{8}{D$\sharp$}{0} \note{6}{9}{E}{0} \note{6}{10}{F}{0} \note{6}{11}{F$\sharp$}{0} \note{6}{12}{G}{1}
+    \note{6}{0}{G}{G}{white} \note{6}{1}{G$\sharp$}{Gs}{black} \note{6}{2}{A}{A}{white} \note{6}{3}{A$\sharp$}{As}{black}
+    \note{6}{4}{B}{B}{white} \note{6}{5}{C}{C}{white} \note{6}{6}{C$\sharp$}{Cs}{black} \note{6}{7}{D}{D}{white}
+    \note{6}{8}{D$\sharp$}{Ds}{black} \note{6}{9}{E}{E}{black} \note{6}{10}{F}{F}{white} \note{6}{11}{F$\sharp$}{Fs}{black} \note{6}{12}{G}{G}{white}
 
 \end{tikzpicture}
 
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{center}
     \small\sffamily
-    \textbf{Legend:} \textbf{Black circles} indicate Root notes (\textbf{G}). 
-    \textbf{White circles} indicate chord/scale intervals across the fretboard.
+    \textbf{Color Legend:} 
+    \colorbox{colorG}{\textcolor{white}{\textbf{G}}} \quad
+    \colorbox{colorC}{\textcolor{white}{\textbf{C}}} \quad
+    \colorbox{colorD}{\textcolor{white}{\textbf{D}}} \quad
+    \colorbox{colorE}{\textcolor{black}{\textbf{E}}} \quad
+    \colorbox{colorA}{\textcolor{white}{\textbf{A}}} \quad
+    \colorbox{colorB}{\textcolor{white}{\textbf{B}}} \quad
+    \colorbox{colorF}{\textcolor{white}{\textbf{F}}}
 \end{center}
 
 \end{document}

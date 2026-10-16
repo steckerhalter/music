@@ -1,5 +1,5 @@
 \documentclass[a4paper,landscape]{article}
-\usepackage[margin=1cm]{geometry}
+\usepackage[margin=0.8cm]{geometry}
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{multicol}
@@ -30,12 +30,12 @@
 
 \begin{center}
     {\Huge \bfseries \sffamily Guitalele Fretboard Note Map}\\[0.1cm]
-    {\Large \sffamily Tuning: G--D--G--B--D--G (Low to High)}\\[0.3cm]
+    {\Large \sffamily Tuning: G--D--G--B--D--G (Low to High)}\\[0.25cm]
 \end{center}
 
 \noindent
 \centering
-\begin{tikzpicture}[xscale=1.5, yscale=0.85]
+\begin{tikzpicture}[xscale=1.5, yscale=0.82]
 
     % Fretboard Wood Background
     \fill[gray!15, rounded corners=3pt] (-0.3, 0.5) rectangle (12.3, 6.5);
@@ -114,29 +114,35 @@
 
 \end{tikzpicture}
 
-\vspace{0.4cm}
+\vspace{0.3cm}
 
 % -------------------------------------------------------------
-% COLOR-CODED CHORD REFERENCE TABLE
+% COLOR-CODED CHORD REFERENCE TABLE (4 COLUMNS)
 % -------------------------------------------------------------
 \begin{center}
-    {\Large \bfseries \sffamily Key Chords \& Note Formulas}\\[0.2cm]
+    {\Large \bfseries \sffamily Chord Formulas Reference}\\[0.15cm]
 \end{center}
 
-\begin{multicols}{3}
+\begin{multicols}{4}
 \sffamily\small
 
 \noindent
 \textbf{Major Chords}
 \begin{itemize}
-    \item \textbf{G Major} \quad \texttt{(0 0 0 0 0 0)} \\
-          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D}
-    \item \textbf{C Major} \quad \texttt{(0 2 0 1 0 0)} \\
-          Notes: \noteBadge{colorC}{white}{C} \quad \noteBadge{colorE}{black}{E} \quad \noteBadge{colorG}{white}{G}
-    \item \textbf{D Major} \quad \texttt{(0 0 2 3 2 2)} \\
-          Notes: \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$} \quad \noteBadge{colorA}{white}{A}
-    \item \textbf{F Major} \quad \texttt{(3 2 0 2 1 0)} \\
-          Notes: \noteBadge{colorF}{white}{F} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C}
+    \item \textbf{G Major} \\
+          \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D}
+    \item \textbf{C Major} \\
+          \noteBadge{colorC}{white}{C} \quad \noteBadge{colorE}{black}{E} \quad \noteBadge{colorG}{white}{G}
+    \item \textbf{D Major} \\
+          \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$} \quad \noteBadge{colorA}{white}{A}
+    \item \textbf{E Major} \\
+          \noteBadge{colorE}{black}{E} \quad \noteBadge{colorGs}{black}{G$\sharp$} \quad \noteBadge{colorB}{white}{B}
+    \item \textbf{F Major} \\
+          \noteBadge{colorF}{white}{F} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C}
+    \item \textbf{A Major} \\
+          \noteBadge{colorA}{white}{A} \quad \noteBadge{colorCs}{black}{C$\sharp$} \quad \noteBadge{colorE}{black}{E}
+    \item \textbf{B Major} \\
+          \noteBadge{colorB}{white}{B} \quad \noteBadge{colorDs}{black}{D$\sharp$} \quad \noteBadge{colorFs}{black}{F$\sharp$}
 \end{itemize}
 
 \columnbreak
@@ -144,29 +150,58 @@
 \noindent
 \textbf{Minor Chords}
 \begin{itemize}
-    \item \textbf{E Minor} \quad \texttt{(2 0 2 0 0 0)} \\
-          Notes: \noteBadge{colorE}{black}{E} \quad \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B}
-    \item \textbf{A Minor} \quad \texttt{(2 0 2 1 0 0)} \\
-          Notes: \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C} \quad \noteBadge{colorE}{black}{E}
-    \item \textbf{B Minor} \quad \texttt{(0 2 0 0 3 0)} \\
-          Notes: \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$}
-    \item \textbf{C Minor} \quad \texttt{(0 2 0 0 1 0)} \\
-          Notes: \noteBadge{colorC}{white}{C} \quad \noteBadge{colorDs}{black}{E$\flat$} \quad \noteBadge{colorG}{white}{G}
+    \item \textbf{E Minor} \\
+          \noteBadge{colorE}{black}{E} \quad \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B}
+    \item \textbf{A Minor} \\
+          \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C} \quad \noteBadge{colorE}{black}{E}
+    \item \textbf{B Minor} \\
+          \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$}
+    \item \textbf{C Minor} \\
+          \noteBadge{colorC}{white}{C} \quad \noteBadge{colorDs}{black}{E$\flat$} \quad \noteBadge{colorG}{white}{G}
+    \item \textbf{D Minor} \\
+          \noteBadge{colorD}{white}{D} \quad \noteBadge{colorF}{white}{F} \quad \noteBadge{colorA}{white}{A}
+    \item \textbf{F$\sharp$ Minor} \\
+          \noteBadge{colorFs}{black}{F$\sharp$} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorCs}{black}{C$\sharp$}
+    \item \textbf{G$\sharp$ Minor} \\
+          \noteBadge{colorGs}{black}{G$\sharp$} \quad \noteBadge{colorB}{white}{B} \quad \noteBadge{colorDs}{black}{D$\sharp$}
 \end{itemize}
 
 \columnbreak
 
 \noindent
-\textbf{Dominant 7ths \& Color}
+\textbf{Dominant 7ths}
 \begin{itemize}
-    \item \textbf{G7} \quad \texttt{(0 0 0 0 0 3)} \\
-          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D} \quad \noteBadge{colorF}{white}{F}
-    \item \textbf{D7} \quad \texttt{(0 0 2 1 1 0)} \\
-          Notes: \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C}
-    \item \textbf{Gsus4} \quad \texttt{(0 0 0 0 1 0)} \\
-          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorC}{white}{C} \quad \noteBadge{colorD}{white}{D}
-    \item \textbf{Gsus2} \quad \texttt{(0 0 0 2 0 0)} \\
-          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorD}{white}{D}
+    \item \textbf{G7} \\
+          \noteBadge{colorG}{white}{G} \ \noteBadge{colorB}{white}{B} \ \noteBadge{colorD}{white}{D} \ \noteBadge{colorF}{white}{F}
+    \item \textbf{D7} \\
+          \noteBadge{colorD}{white}{D} \ \noteBadge{colorFs}{black}{F$\sharp$} \ \noteBadge{colorA}{white}{A} \ \noteBadge{colorC}{white}{C}
+    \item \textbf{C7} \\
+          \noteBadge{colorC}{white}{C} \ \noteBadge{colorE}{black}{E} \ \noteBadge{colorG}{white}{G} \ \noteBadge{colorAs}{black}{B$\flat$}
+    \item \textbf{E7} \\
+          \noteBadge{colorE}{black}{E} \ \noteBadge{colorGs}{black}{G$\sharp$} \ \noteBadge{colorB}{white}{B} \ \noteBadge{colorD}{white}{D}
+    \item \textbf{A7} \\
+          \noteBadge{colorA}{white}{A} \ \noteBadge{colorCs}{black}{C$\sharp$} \ \noteBadge{colorE}{black}{E} \ \noteBadge{colorG}{white}{G}
+    \item \textbf{B7} \\
+          \noteBadge{colorB}{white}{B} \ \noteBadge{colorDs}{black}{D$\sharp$} \ \noteBadge{colorFs}{black}{F$\sharp$} \ \noteBadge{colorA}{white}{A}
+\end{itemize}
+
+\columnbreak
+
+\noindent
+\textbf{Color \& Suspended}
+\begin{itemize}
+    \item \textbf{Gsus4} \\
+          \noteBadge{colorG}{white}{G} \quad \noteBadge{colorC}{white}{C} \quad \noteBadge{colorD}{white}{D}
+    \item \textbf{Gsus2} \\
+          \noteBadge{colorG}{white}{G} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorD}{white}{D}
+    \item \textbf{Csus4} \\
+          \noteBadge{colorC}{white}{C} \quad \noteBadge{colorF}{white}{F} \quad \noteBadge{colorG}{white}{G}
+    \item \textbf{Dsus4} \\
+          \noteBadge{colorD}{white}{D} \quad \noteBadge{colorG}{white}{G} \quad \noteBadge{colorA}{white}{A}
+    \item \textbf{Gmaj7} \\
+          \noteBadge{colorG}{white}{G} \ \noteBadge{colorB}{white}{B} \ \noteBadge{colorD}{white}{D} \ \noteBadge{colorFs}{black}{F$\sharp$}
+    \item \textbf{Cmaj7} \\
+          \noteBadge{colorC}{white}{C} \ \noteBadge{colorE}{black}{E} \ \noteBadge{colorG}{white}{G} \ \noteBadge{colorB}{white}{B}
 \end{itemize}
 
 \end{multicols}

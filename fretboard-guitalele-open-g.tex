@@ -2,6 +2,7 @@
 \usepackage[margin=1cm]{geometry}
 \usepackage{tikz}
 \usepackage{xcolor}
+\usepackage{multicol}
 \usetikzlibrary{shapes.geometric}
 
 \pagestyle{empty}
@@ -20,16 +21,21 @@
 \definecolor{colorF}{HTML}{00897B}   % Teal (F)
 \definecolor{colorFs}{HTML}{80CBC4}  % Light Teal (F#/Gb)
 
+% Helper command for inline color badges
+\newcommand{\noteBadge}[3]{%
+    \colorbox{#1}{\textcolor{#2}{\textbf{#3}}}%
+}
+
 \begin{document}
 
 \begin{center}
-    {\Huge \bfseries \sffamily Guitalele Fretboard Note Map}\\[0.2cm]
-    {\Large \sffamily Tuning: G--D--G--B--D--G (Low to High)}\\[0.4cm]
+    {\Huge \bfseries \sffamily Guitalele Fretboard Note Map}\\[0.1cm]
+    {\Large \sffamily Tuning: G--D--G--B--D--G (Low to High)}\\[0.3cm]
 \end{center}
 
 \noindent
 \centering
-\begin{tikzpicture}[xscale=1.5, yscale=0.9]
+\begin{tikzpicture}[xscale=1.5, yscale=0.85]
 
     % Fretboard Wood Background
     \fill[gray!15, rounded corners=3pt] (-0.3, 0.5) rectangle (12.3, 6.5);
@@ -64,7 +70,6 @@
     \node[left, font=\sffamily\bfseries] at (-0.6, 1) {Str 6 (Low G)};
 
     % Dynamic Note Drawing Command
-    % #1: String (1-6), #2: Fret (0-12), #3: Display Text, #4: Color ID suffix, #5: Text Color (white or black)
     \newcommand{\note}[5]{%
         \ifnum#2=0
             \def\xpos{-0.3}%
@@ -73,7 +78,6 @@
         \fi
         \pgfmathsetmacro{\ypos}{7 - #1}%
 
-        % Draw circle using the color name "color#4" without space padding issues
         \fill[color#4, draw=black!80, line width=0.6pt] (\xpos, \ypos) circle (0.28cm);
         \node[#5, font=\sffamily\bfseries\tiny] at (\xpos, \ypos) {#3};%
     }
@@ -110,17 +114,61 @@
 
 \end{tikzpicture}
 
-\vspace{0.3cm}
+\vspace{0.4cm}
+
+% -------------------------------------------------------------
+% COLOR-CODED CHORD REFERENCE TABLE
+% -------------------------------------------------------------
 \begin{center}
-    \small\sffamily
-    \textbf{Color Legend:} 
-    \colorbox{colorG}{\textcolor{white}{\textbf{G}}} \quad
-    \colorbox{colorC}{\textcolor{white}{\textbf{C}}} \quad
-    \colorbox{colorD}{\textcolor{white}{\textbf{D}}} \quad
-    \colorbox{colorE}{\textcolor{black}{\textbf{E}}} \quad
-    \colorbox{colorA}{\textcolor{white}{\textbf{A}}} \quad
-    \colorbox{colorB}{\textcolor{white}{\textbf{B}}} \quad
-    \colorbox{colorF}{\textcolor{white}{\textbf{F}}}
+    {\Large \bfseries \sffamily Key Chords \& Note Formulas}\\[0.2cm]
 \end{center}
+
+\begin{multicols}{3}
+\sffamily\small
+
+\noindent
+\textbf{Major Chords}
+\begin{itemize}
+    \item \textbf{G Major} \quad \texttt{(0 0 0 0 0 0)} \\
+          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D}
+    \item \textbf{C Major} \quad \texttt{(0 2 0 1 0 0)} \\
+          Notes: \noteBadge{colorC}{white}{C} \quad \noteBadge{colorE}{black}{E} \quad \noteBadge{colorG}{white}{G}
+    \item \textbf{D Major} \quad \texttt{(0 0 2 3 2 2)} \\
+          Notes: \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$} \quad \noteBadge{colorA}{white}{A}
+    \item \textbf{F Major} \quad \texttt{(3 2 0 2 1 0)} \\
+          Notes: \noteBadge{colorF}{white}{F} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C}
+\end{itemize}
+
+\columnbreak
+
+\noindent
+\textbf{Minor Chords}
+\begin{itemize}
+    \item \textbf{E Minor} \quad \texttt{(2 0 2 0 0 0)} \\
+          Notes: \noteBadge{colorE}{black}{E} \quad \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B}
+    \item \textbf{A Minor} \quad \texttt{(2 0 2 1 0 0)} \\
+          Notes: \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C} \quad \noteBadge{colorE}{black}{E}
+    \item \textbf{B Minor} \quad \texttt{(0 2 0 0 3 0)} \\
+          Notes: \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$}
+    \item \textbf{C Minor} \quad \texttt{(0 2 0 0 1 0)} \\
+          Notes: \noteBadge{colorC}{white}{C} \quad \noteBadge{colorDs}{black}{E$\flat$} \quad \noteBadge{colorG}{white}{G}
+\end{itemize}
+
+\columnbreak
+
+\noindent
+\textbf{Dominant 7ths \& Color}
+\begin{itemize}
+    \item \textbf{G7} \quad \texttt{(0 0 0 0 0 3)} \\
+          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorB}{white}{B} \quad \noteBadge{colorD}{white}{D} \quad \noteBadge{colorF}{white}{F}
+    \item \textbf{D7} \quad \texttt{(0 0 2 1 1 0)} \\
+          Notes: \noteBadge{colorD}{white}{D} \quad \noteBadge{colorFs}{black}{F$\sharp$} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorC}{white}{C}
+    \item \textbf{Gsus4} \quad \texttt{(0 0 0 0 1 0)} \\
+          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorC}{white}{C} \quad \noteBadge{colorD}{white}{D}
+    \item \textbf{Gsus2} \quad \texttt{(0 0 0 2 0 0)} \\
+          Notes: \noteBadge{colorG}{white}{G} \quad \noteBadge{colorA}{white}{A} \quad \noteBadge{colorD}{white}{D}
+\end{itemize}
+
+\end{multicols}
 
 \end{document}
